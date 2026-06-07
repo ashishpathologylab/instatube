@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Pro - Made in India 🇮🇳</title>
+    <link rel="stylesheet" href="youtube-pro-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="logo">
+                    <i class="fas fa-play-circle"></i>
+                    <span class="logo-text">YouTube Pro</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search videos, channels...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="voice-search-btn" title="Voice Search">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="icon-btn notification-btn" id="notificationBtn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">5</span>
+                </button>
+                <button class="icon-btn theme-toggle" id="themeToggle" title="Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="icon-btn profile-btn" id="profileBtn" title="Profile">
+                    <img src="https://via.placeholder.com/40" alt="Profile" class="profile-pic">
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <!-- HOME SCREEN -->
+            <section id="homeScreen" class="screen active">
+                <div class="home-container">
+                    <!-- TRENDING BANNER SLIDER -->
+                    <div class="trending-slider">
+                        <div class="slide active">
+                            <img src="https://via.placeholder.com/1200x300/FF6B6B/ffffff?text=Trending+Now" alt="Trending">
+                            <div class="slide-content">
+                                <h2>🔥 Trending Now</h2>
+                                <p>Latest videos from your favorite creators</p>
+                                <button class="btn btn-primary">Watch Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CATEGORY CHIPS -->
+                    <div class="category-chips">
+                        <button class="chip active">All</button>
+                        <button class="chip">🎵 Music</button>
+                        <button class="chip">🎮 Gaming</button>
+                        <button class="chip">📰 News</button>
+                        <button class="chip">🔴 Live</button>
+                        <button class="chip">🎬 Movies</button>
+                        <button class="chip">⚽ Sports</button>
+                        <button class="chip">💻 Tech</button>
+                    </div>
+
+                    <!-- VIDEO FEED -->
+                    <div class="video-feed" id="videoFeed">
+                        <!-- Videos will be dynamically added here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- SHORTS SCREEN -->
+            <section id="shortsScreen" class="screen">
+                <div class="shorts-container">
+                    <div class="short-video" id="shortVideo">
+                        <video width="100%" height="100%" controls autoplay>
+                            <source src="https://via.placeholder.com/400x800" type="video/mp4">
+                        </video>
+                        
+                        <div class="short-overlay">
+                            <div class="short-info">
+                                <p class="music-title">🎵 Trending Audio</p>
+                            </div>
+                            
+                            <div class="short-actions">
+                                <button class="short-action-btn" title="Like">
+                                    <i class="fas fa-heart"></i>
+                                    <span>45K</span>
+                                </button>
+                                <button class="short-action-btn" title="Comment">
+                                    <i class="fas fa-comment"></i>
+                                    <span>2.3K</span>
+                                </button>
+                                <button class="short-action-btn" title="Share">
+                                    <i class="fas fa-share"></i>
+                                    <span>1.2K</span>
+                                </button>
+                                <button class="short-action-btn" title="More">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+
+                            <div class="short-channel">
+                                <img src="https://via.placeholder.com/40" alt="Channel" class="channel-avatar">
+                                <div>
+                                    <p class="channel-name">@CreatorName</p>
+                                    <button class="btn btn-sm btn-primary">Subscribe</button>
+                                </div>
+                            </div>
+
+                            <div class="speed-control">
+                                <button class="speed-btn active" data-speed="1">1x</button>
+                                <button class="speed-btn" data-speed="0.5">0.5x</button>
+                                <button class="speed-btn" data-speed="1.5">1.5x</button>
+                                <button class="speed-btn" data-speed="2">2x</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- UPLOAD SCREEN -->
+            <section id="uploadScreen" class="screen">
+                <div class="upload-container">
+                    <h2>📤 Upload Video</h2>
+                    
+                    <form class="upload-form" id="uploadForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Video File</label>
+                                <div class="upload-area" id="uploadArea">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag & drop video here or click to select</p>
+                                    <input type="file" id="videoFile" accept="video/*" hidden>
+                                </div>
+                                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill"></div>
+                                    </div>
+                                    <p id="progressText">Uploading... 0%</p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Thumbnail</label>
+                                <div class="thumbnail-preview" id="thumbnailPreview">
+                                    <i class="fas fa-image"></i>
+                                    <p>No thumbnail selected</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Title *</label>
+                            <input type="text" placeholder="Enter video title" maxlength="100" required>
+                            <span class="char-count">0/100</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Description</label>
+                            <textarea placeholder="Enter description" maxlength="5000"></textarea>
+                            <span class="char-count">0/5000</span>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select required>
+                                    <option>Select category</option>
+                                    <option>🎮 Gaming</option>
+                                    <option>🎵 Music</option>
+                                    <option>🎬 Entertainment</option>
+                                    <option>📚 Education</option>
+                                    <option>📰 News</option>
+                                    <option>⚽ Sports</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Visibility *</label>
+                                <select required>
+                                    <option>Public</option>
+                                    <option>Private</option>
+                                    <option>Unlisted</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Schedule Upload</label>
+                                <input type="datetime-local">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Tags (comma separated)</label>
+                            <input type="text" placeholder="tag1, tag2, tag3">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" checked> Enable Monetization (Ads)
+                            </label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-upload"></i> Upload Video
+                            </button>
+                            <button type="reset" class="btn btn-secondary btn-lg">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- SUBSCRIPTIONS SCREEN -->
+            <section id="subscriptionsScreen" class="screen">
+                <div class="subscriptions-container">
+                    <h2>📺 Subscriptions</h2>
+                    
+                    <div class="subscription-filters">
+                        <button class="filter-btn active">All</button>
+                        <button class="filter-btn">Personalized</button>
+                        <button class="filter-btn">None</button>
+                    </div>
+
+                    <div class="subscription-feed" id="subscriptionFeed">
+                        <!-- Subscribed channels will be added here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- LIBRARY SCREEN -->
+            <section id="libraryScreen" class="screen">
+                <div class="library-container">
+                    <h2>📚 Library</h2>
+                    
+                    <div class="library-tabs">
+                        <button class="tab-btn active" data-tab="history">
+                            <i class="fas fa-history"></i> History
+                        </button>
+                        <button class="tab-btn" data-tab="liked">
+                            <i class="fas fa-heart"></i> Liked
+                        </button>
+                        <button class="tab-btn" data-tab="playlists">
+                            <i class="fas fa-list"></i> Playlists
+                        </button>
+                        <button class="tab-btn" data-tab="downloads">
+                            <i class="fas fa-download"></i> Downloads
+                        </button>
+                        <button class="tab-btn" data-tab="watchlater">
+                            <i class="fas fa-clock"></i> Watch Later
+                        </button>
+                    </div>
+
+                    <div class="tab-content" id="libraryContent">
+                        <!-- Library content will be added here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- BOTTOM NAVIGATION BAR -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="homeScreen">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-screen="shortsScreen">
+                <i class="fas fa-bolt"></i>
+                <span>Shorts</span>
+            </button>
+            <button class="nav-item upload-btn" data-screen="uploadScreen">
+                <i class="fas fa-plus"></i>
+                <span>Upload</span>
+            </button>
+            <button class="nav-item" data-screen="subscriptionsScreen">
+                <i class="fas fa-bookmark"></i>
+                <span>Subscriptions</span>
+            </button>
+            <button class="nav-item" data-screen="libraryScreen">
+                <i class="fas fa-bars"></i>
+                <span>Library</span>
+            </button>
+        </nav>
+
+        <!-- FLOATING ACTION BUTTON -->
+        <button class="fab" id="fab">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- NOTIFICATION PANEL -->
+        <div class="notification-panel" id="notificationPanel">
+            <h3>🔔 Notifications</h3>
+            <div class="notification-list">
+                <div class="notification-item">
+                    <img src="https://via.placeholder.com/40" alt="">
+                    <div>
+                        <p><strong>TechYoutuber</strong> liked your video</p>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <img src="https://via.placeholder.com/40" alt="">
+                    <div>
+                        <p><strong>MusicChannel</strong> uploaded new video</p>
+                        <small>5 hours ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <img src="https://via.placeholder.com/40" alt="">
+                    <div>
+                        <p><strong>GamingPro</strong> started streaming 🔴</p>
+                        <small>1 day ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <img src="https://via.placeholder.com/40" alt="">
+                    <div>
+                        <p><strong>NewsChannel</strong> new post</p>
+                        <small>1 day ago</small>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <img src="https://via.placeholder.com/40" alt="">
+                    <div>
+                        <p><strong>Creator</strong> shared your video</p>
+                        <small>2 days ago</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROFILE MENU -->
+        <div class="profile-menu" id="profileMenu">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/60" alt="">
+                <div>
+                    <p class="profile-name">Ashish Singh</p>
+                    <p class="profile-email">ashish@youtube.com</p>
+                    <p class="profile-badge">⭐ Verified Creator</p>
+                </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-user"></i> My Profile
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-credit-card"></i> Channel
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-chart-line"></i> Creator Studio
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-dollar-sign"></i> Monetization
+            </a>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+            <a href="#" class="menu-item">
+                <i class="fas fa-question-circle"></i> Help & Feedback
+            </a>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item logout">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </a>
+        </div>
+
+        <!-- TOAST NOTIFICATION -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="youtube-pro-script.js"></script>
+</body>
+</html>
