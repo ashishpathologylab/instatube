@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Timezone Digital Clock</title>
+    <link rel="stylesheet" href="clock-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="clock-container">
+        <!-- HEADER -->
+        <header class="header">
+            <h1>
+                <i class="fas fa-globe"></i>
+                Global Digital Clock
+            </h1>
+            <p class="tagline">Real-time across all time zones</p>
+        </header>
+
+        <!-- CONTROLS -->
+        <div class="controls">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search timezones..."
+                    autocomplete="off"
+                >
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="view-options">
+                <button class="view-btn active" data-view="grid">
+                    <i class="fas fa-th"></i> Grid
+                </button>
+                <button class="view-btn" data-view="list">
+                    <i class="fas fa-list"></i> List
+                </button>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active" data-tab="all">All Timezones</button>
+            <button class="tab" data-tab="favorites">⭐ Favorites</button>
+            <button class="tab" data-tab="custom">➕ Custom</button>
+        </div>
+
+        <!-- CLOCK GRID -->
+        <div class="clocks-grid" id="clocksGrid">
+            <!-- Clocks will be dynamically added here -->
+        </div>
+
+        <!-- EMPTY STATE -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-search"></i>
+            <p>No timezones found</p>
+        </div>
+
+        <!-- FAVORITES EMPTY STATE -->
+        <div class="empty-state" id="favoritesEmpty" style="display: none;">
+            <i class="fas fa-star"></i>
+            <p>No favorite timezones yet. Add some!</p>
+        </div>
+
+        <!-- CUSTOM TIMEZONE FORM -->
+        <div class="custom-form" id="customForm" style="display: none;">
+            <h3>Add Custom Timezone</h3>
+            <div class="form-group">
+                <label>Timezone Name</label>
+                <input type="text" id="customName" placeholder="e.g., My Office">
+            </div>
+            <div class="form-group">
+                <label>UTC Offset (e.g., +5:30, -8:00)</label>
+                <input type="text" id="customOffset" placeholder="+5:30">
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-primary" onclick="addCustomTimezone()">Add Timezone</button>
+                <button class="btn btn-secondary" onclick="cancelCustom()">Cancel</button>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>Updated every second | Made with ❤️ in India 🇮🇳</p>
+        </footer>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toast"></div>
+
+    <script src="clock-script.js"></script>
+</body>
+</html>
